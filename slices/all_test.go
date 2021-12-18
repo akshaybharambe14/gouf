@@ -19,12 +19,12 @@ func TestAll(t *testing.T) {
 		want bool
 	}{
 		{
-			name: "all elements satisfy predicate",
+			name: "predicate returns true for all elements",
 			args: args[int]{f: f, s: []int{1, 2, 3, 4, 5}},
 			want: true,
 		},
 		{
-			name: "some elements satisfy predicate",
+			name: "predicate returns false for some element",
 			args: args[int]{f: f, s: []int{1, 2, 3, 4, 5, 0}},
 			want: false,
 		},
