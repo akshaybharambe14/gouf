@@ -1,0 +1,33 @@
+name: Build and test package
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        with:
+          stable: false
+          go-version: 1.18.0-beta1
+        id: go
+
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2
+
+      - name: Get dependencies
+        env:
+          GO111MODULE: on
+        run: go mod download
+
+      - name: Build package
+        env:
+          GO111MODULE: on
+        run: go build -v ./...
+
+      - name: Test package
+        env:
+          GO111MODULE: on
+        run: go test -v ./...
